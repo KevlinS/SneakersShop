@@ -1,6 +1,7 @@
 <template>
-    <div class="product__detail text-center">
+    <div class="product__detail grid justify-items-center">
         <TitlePage title="DETAIL PAGE"/>
+        <img class="product__image" :src=productDetail.image>
         <p>Product: {{productDetail.title}}</p>
         <p>Description: {{productDetail.description}}</p>
         <p>Price: {{productDetail.price}}</p>

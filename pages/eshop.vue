@@ -1,13 +1,16 @@
 <template>
     <div>
         <div class="loader" v-if="loading">loading...</div>
-        <div class="product__grid" v-for="product in productsArray" :key="product.id">
-            <div class="product__item text-center border-2">
-                    <p>Product: {{product.title}}</p>
-                    <p>Price: {{product.price}}</p>
+        <div class="products grid grid-cols-4 gap-4 ">
+        <div class="product__grid flex justify-center" v-for="product in productsArray" :key="product.id">
+            <div class="product__item grid justify-items-center">
+                <img class="product__image h-41" :src=product.image>
+                <p>Product: {{product.title}}</p>
+                <p>Price: {{product.price}}€</p>
                 <NuxtLink :to="`/product/${product.id}`" >Voir le produit</NuxtLink>
             </div>
         </div>
+       </div>
     </div>
 </template>
 

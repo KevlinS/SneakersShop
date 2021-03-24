@@ -5,5 +5,6 @@ query getProduct($id : ID!){
         title
         description
         price
+        image
     }
 }
