@@ -11,7 +11,7 @@ export default ({app}, inject) => {
     }),
     //Pour récupérer un utilisateur "user/:id"
     inject('getMe', (id, token) => {
-        return fetch(`http://localhost:3030/api/v1/user/${id}`,{
+        return fetch(`${process.env.API_URL}/user/${id}`,{
             headers: {
                 "Authorization":token
             }
