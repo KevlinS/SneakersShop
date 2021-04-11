@@ -17,6 +17,16 @@ export default ({app}, inject) => {
             }
         })
         .then(res=>res.json())
+    }),
+    inject('createUser', (body) => {
+        return fetch(`${process.env.API_URL}/register`, {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/json",
+            },
+            body: JSON.stringify(body)
+        })
+        .then(res => res.json())
     })
 
 }

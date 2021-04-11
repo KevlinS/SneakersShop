@@ -20,6 +20,15 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+   .footer__main{
+       position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #161616;
+  color: white;
+  text-align: center;
+  margin-top:35px;
+   }
 </style>

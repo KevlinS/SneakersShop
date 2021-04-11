@@ -8,7 +8,6 @@
         <p>Nom: {{user.lastName}}</p>
         <p>Prénom: {{user.firstName}}</p>
         <p>Email: {{user.email}}</p>
-        <p>Age: {{user.age}}</p>
         <div class="input__wrapper">
             <button @click="logout">Se déconnecter</button>
         </div>
