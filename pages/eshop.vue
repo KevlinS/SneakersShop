@@ -1,13 +1,15 @@
 <template>
-    <div>
+    <div class="container">
         <div class="loader" v-if="loading">loading...</div>
         <div class="products grid grid-cols-4 gap-4 ">
         <div class="product__grid flex justify-center" v-for="product in productsArray" :key="product.id">
             <div class="product__item grid justify-items-center">
+                
+                <NuxtLink :to="`/product/${product.id}`" >
                 <img class="product__image h-41" :src=product.image>
-                <p>Product: {{product.title}}</p>
-                <p>Price: {{product.price}}€</p>
-                <NuxtLink :to="`/product/${product.id}`" >Voir le produit</NuxtLink>
+                <p>{{product.title}}</p>
+                <p>{{product.price}}€</p>
+                </NuxtLink>
             </div>
         </div>
        </div>
@@ -45,6 +47,13 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+    .container {
+  margin: 0 auto;
+  min-height: 20vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 35px;
+}
 </style>

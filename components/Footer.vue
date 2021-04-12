@@ -26,8 +26,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #161616;
-  color: white;
+  
+  color: black;
   text-align: center;
   margin-top:35px;
    }

@@ -5,26 +5,34 @@
         <FormGroup textLabel="Password" inputType="password" :inputModel="password" /> -->
         <div class="form__group">
             <label class="block text-sm font-medium text-gray-700">Nom</label>
-            <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="lastName" :name="lastName"/>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="lastName" :name="lastName" required/>
         </div>
         <div class="form__group">
             <label class="block text-sm font-medium text-gray-700">Prénom</label>
-            <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="firstName" :name="firstName"/>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="firstName" :name="firstName" required/>
+        </div>
+        <div class="form__group">
+            <label class="block text-sm font-medium text-gray-700">Adresse (adresse, cp, ville, pays)</label>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="adresse" :name="adresse" required/>
+        </div>
+         <div class="form__group">
+            <label class="block text-sm font-medium text-gray-700">Téléphone</label>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="tel" v-model="telephone" :name="telephone" required/>
         </div>
         <div class="form__group">
             <label class="block text-sm font-medium text-gray-700">Email</label>
-            <input class="border-2 rounded-sm my-1 h-10 w-full" type="email" v-model="email" :name="email"/>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="email" v-model="email" :name="email" required/>
         </div>
         <div class="form__group">
             <label class="block text-sm font-medium text-gray-700">Mot de passe</label>
-            <input class="border-2 rounded-sm my-1 h-10 w-full" type="password" v-model="password" :name="password"/>
+            <input class="border-2 rounded-sm my-1 h-10 w-full" type="password" v-model="password" :name="password" required/>
         </div>
         <div>
-            <input type="radio" v-model="isAdmin" :name="isAdmin" value="false"/>
+            <input type="radio" v-model="isAdmin" :name="isAdmin" value="false" />
             <label for="coding">Utilisateur</label>
         </div>
         <div>
-            <input type="radio" v-model="isAdmin" :name="isAdmin" value="true"/>
+            <input type="radio" v-model="isAdmin" :name="isAdmin" value="true" />
             <label for="music">Admin</label>
         </div>
          <div>
@@ -54,18 +62,22 @@
                 firstName: "",
                 lastName: "",
                 isAdmin:"",
+                telephone:"",
+                adresse:"",
                 messageError: ""
             }
         },
         methods: {
             inscription: function() {
-                console.log(this.email, this.password, this.firstName, this.lastName, this.isAdmin);
+                console.log(this.email, this.password, this.firstName, this.lastName, this.isAdmin, this.telephone, this.adresse);
                 const body = {
                     firstName: this.firstName,
                     lastName: this.lastName,
                     email: this.email,
                     password: this.password,
-                    isAdmin: this.isAdmin
+                    isAdmin: this.isAdmin,
+                    telephone: this.telephone,
+                    adresse: this.adresse
                 }
                 this.$createUser(body)
                 .then((data) => {
