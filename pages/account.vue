@@ -13,21 +13,28 @@
         <div class="input__wrapper">
             <Button btnTitle="Se déconnecter" :btnFunction="logout"/>
         </div>
-        <div>
+        <div >
             <h1>VOS COMMANDES</h1>
+           
         </div>
-        </div>
-        <div class="products grid grid-cols-3 gap-3">
-        
-         <div class="product__grid flex justify-center" v-for="product in productList" :key="product.id">
-            <div class="product__item grid justify-items-center">
-                <img :src=product.image>
-                <p>{{product.title}}</p>
+       <div class="commande" v-for="commande in commandeList" :key="commande.id">
+            <div>
+                <h3>Commande N° {{commande._id}}</h3>
+                <p>Date de la commande : {{commande.createdAt | moment("dddd, MMMM Do YYYY, h:mm:ss a")}} </p>
+                <p>{{commande.user.firstName}} {{commande.user.lastName}}</p>
+                <p>Montant : {{commande.amountTotal}}€</p>
                 
             </div>
         </div>
+        <div >
+        
+        
         </div>
     </div>
+  
+
+       
+</div>
     
 </template>
 
@@ -35,6 +42,7 @@
     import TitlePage from "../components/TitlePage";
     import Button from "../components/Button";
     import VueJwtDecode from "vue-jwt-decode";
+    import moment from 'moment';
 
     export default {
         components: {
@@ -46,7 +54,12 @@
                 isLogged: false,
                 user:{},
                 orders:{},
-                productList:[]
+                commandeList: []
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('DD-MM-YY, h:mm a');
             }
         },
         middleware:"auth",
@@ -77,19 +90,29 @@
                 this.$getOrders()
                 .then(data => {
                     this.orders = data;
+                    
                     for(var i=0; i<data.length; i++) {
                         var idUserInOrder = data[i].user._id
-                        console.log(data[i].user._id)
+                        // console.log(data[i].user._id)
                         for(var j=0; j<data[i].products.length; j++){
                             if(idUserInOrder == this.user._id){
-                                this.productList = data[i].products;
+                                
+                                console.log(data[i]._id)
+                                this.commandeList.push(data[i]);
+                                console.log(i)
+                                this.commandeList.splice(i)
+                                // this.productList = data[i].products[j]
+                               
+                               
                             }
                             
-                            console.log(data[i].products[j].title)
+                          
                         }
-                        
+                       
                     }
+                     console.log(this.productList)
                 })
+                
                 .catch(err=>console.log(err))
             }
             
@@ -109,5 +132,46 @@
 .input__wrapper{
     margin-top: 35px;
     margin-bottom: 35px;
+}
+.commande{
+    text-align: left;
+    border-width:2px;
+border-style:solid;
+border-color:black;
+margin-bottom: 55px;
+}
+.commande h3{
+    color: black;
+padding: 5px 0 9px;
+letter-spacing: .8px;
+font-weight: 700;
+font-size: 20px;
+line-height: 1.1;
+max-width: 520px;
+font-family: roboto condensed,sans-serif;
+text-transform: uppercase;
+width: 100%;
+outline: none !important;
+text-decoration: none !important;
+text-align: left;
+margin-left: 10px;
+}
+.commande p{
+   color: #414141;
+margin-top: .3rem;
+margin-bottom: .6rem;
+padding: 5px 0 9px;
+letter-spacing: .8px;
+font-weight: 700;
+font-size: 15px;
+line-height: 1.1;
+max-width: 520px;
+font-family: roboto condensed,sans-serif;
+text-transform: uppercase;
+width: 100%;
+outline: none !important;
+text-decoration: none !important;
+text-align: left;
+margin-left: 10px;
 }
 </style>

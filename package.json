@@ -24,6 +24,7 @@
     "nuxt": "^2.14.12",
     "sass": "^1.32.8",
     "vue-jwt-decode": "^0.1.0",
+    "vue-moment": "^4.1.0",
     "vue-simple-alert": "^1.1.1"
   },
   "devDependencies": {

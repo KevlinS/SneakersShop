@@ -128,7 +128,7 @@
             console.log(this.productArray[i].price)
             this.total += this.productArray[i].price;
             this.newTotal =  this.total.toFixed(2);
-            this.products.push(this.productArray[i].id)
+            this.products.push(this.productArray[i].id);
         }
         // console.log(this.products)
         
