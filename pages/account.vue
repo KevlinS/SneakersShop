@@ -1,5 +1,5 @@
 <template>
-    <div class="page__account">
+    <div class="container">
         <div class="message__error text-center" v-if="!isLogged">
             <p>vous n'êtes pas connécté</p>
         </div>
@@ -8,8 +8,20 @@
         <p>Nom: {{user.lastName}}</p>
         <p>Prénom: {{user.firstName}}</p>
         <p>Email: {{user.email}}</p>
+        <p>Téléphone: {{user.telephone}}</p>
+        <p>Adresse: {{user.adresse}}</p>
         <div class="input__wrapper">
             <button @click="logout">Se déconnecter</button>
+        </div>
+
+        </div>
+        <div class="products grid grid-cols-3 gap-3">
+         <div class="product__grid flex justify-center" v-for="product in productList" :key="product.id">
+            <div class="product__item grid justify-items-center">
+                <img :src=product.image>
+                <p>{{product.title}}</p>
+                
+            </div>
         </div>
         </div>
     </div>
@@ -27,7 +39,9 @@
         data: function() {
             return {
                 isLogged: false,
-                user:{}
+                user:{},
+                orders:{},
+                productList:[]
             }
         },
         middleware:"auth",
@@ -36,6 +50,7 @@
                 localStorage.removeItem('token');
                 this.$store.commit('loggedOut');
                 this.isLogged = false;
+                this.$router.push('/');
             }
         },
         fetch() {
@@ -49,13 +64,41 @@
                     console.log(data);
                     this.isLogged = true;
                     this.user = data;
+                    
                 })
                 .catch(err=>console.log(err))
             }
+            if(this.user) {
+                this.$getOrders()
+                .then(data => {
+                    this.orders = data;
+                    for(var i=0; i<data.length; i++) {
+                        var idUserInOrder = data[i].user._id
+                        console.log(data[i].user._id)
+                        for(var j=0; j<data[i].products.length; j++){
+                            if(idUserInOrder == this.user._id){
+                                this.productList = data[i].products;
+                            }
+                            
+                            console.log(data[i].products[j].title)
+                        }
+                        
+                    }
+                })
+                .catch(err=>console.log(err))
+            }
+            
         }
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+     .container {
+  margin: 0 auto;
+  min-height: 20vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 35px;
+}
 </style>

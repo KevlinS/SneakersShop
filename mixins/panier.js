@@ -1,8 +1,8 @@
 export default {
     
     methods: {
-        addToWishlists(product) {
-            let productBD = JSON.parse(localStorage.getItem('wishlists')) || [];
+        addToPanier(product) {
+            let productBD = JSON.parse(localStorage.getItem('panier')) || [];
             let productObject = {
                 id: this.productDetail.id,
                 title: this.productDetail.title,
@@ -27,17 +27,17 @@ export default {
                 console.log("success")
             }
 
-            localStorage.setItem('wishlists', JSON.stringify(productBD));
+            localStorage.setItem('panier', JSON.stringify(productBD));
         },
-        getProductWishlists() {
-            let productBD = JSON.parse(localStorage.getItem('wishlists'));
+        getProductPanier() {
+            let productBD = JSON.parse(localStorage.getItem('panier'));
             return productBD;
         },
-        clearWishlists() {
-            localStorage.removeItem('wishlists');
+        clearPanier() {
+            localStorage.removeItem('panier');
         },
-        removeProduct(product) {
-            let productBD = JSON.parse(localStorage.getItem('wishlists'))
+        removeProductPanier(product) {
+            let productBD = JSON.parse(localStorage.getItem('panier'))
             let indexOfExistingProduct = productBD.findIndex(
                 (el) => el.id === product.id
             )
@@ -51,7 +51,7 @@ export default {
                 productBD = []
                 location.reload();
             }
-            localStorage.setItem('wishlists', JSON.stringify(productBD));
+            localStorage.setItem('panier', JSON.stringify(productBD));
         }
     }
 }

@@ -23,8 +23,8 @@
                     </NuxtLink>
                 </li>
                 <li class="nav__item">
-                    <NuxtLink to="/about" class="nav__link">
-                        À propos
+                    <NuxtLink to="/panier" class="nav__link">
+                        Panier
                     </NuxtLink>
                 </li>
                 <li class="nav__item">
