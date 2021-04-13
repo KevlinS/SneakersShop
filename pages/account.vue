@@ -8,7 +8,7 @@
         <p>Nom: {{user.lastName}}</p>
         <p>Prénom: {{user.firstName}}</p>
         <p>Email: {{user.email}}</p>
-        <p>Téléphone: {{user.telephone}}</p>
+        <p>Téléphone: +33{{user.telephone}}</p>
         <p>Adresse: {{user.adresse}}</p>
         <div class="input__wrapper">
             <Button btnTitle="Se déconnecter" :btnFunction="logout"/>

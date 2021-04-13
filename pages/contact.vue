@@ -19,7 +19,8 @@
             <textarea class="border-2 rounded-sm my-1 h-10 w-full" v-model="message" :name="message"/>
         </div>
         <div>
-            <button type="button" @click.prevent="sendMail">Envoyer</button>
+            <Button btnTitle="Envoyer" :btnFunction="sendMail"/>
+           
         </div>
         <div class="success__message" v-if="successMessage"></div>
     </form>
@@ -75,6 +76,27 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.form__group label {
+        color: #414141;
+letter-spacing: .8px;
+font-weight: 700;
+font-size: 15px;
+line-height: 1.1;
+font-family: roboto condensed,sans-serif;
+text-transform: uppercase;
+width: 100%;
+outline: none !important;
+text-decoration: none !important;
+text-align: left;
+   }
+   .form__group input{
+       margin-top:10px;
+    border:#161616 1px solid;
+   }
+   .form__group textarea{
+       margin-top:10px;
+    border:#161616 1px solid;
+    margin-bottom: 35px;
+   }
 </style>
