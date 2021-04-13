@@ -35,8 +35,8 @@
             <input type="radio" v-model="isAdmin" :name="isAdmin" value="true" />
             <label for="music">Admin</label>
         </div>
-         <div>
-            <button class="border-4" type="submit" @click.prevent="inscription">S'inscrire</button>
+         <div class="btn">
+             <Button btnTitle="S'inscrire" :btnFunction="inscription"/>
             
         </div>
 
@@ -82,12 +82,15 @@
                 this.$createUser(body)
                 .then((data) => {
                     // console.log(data)
-                    if(data) {
+                    
+                    if(this.firstName != "" && this.lastName != "" && this.email != "" &&
+                    this.password != "" && this.isAdmin != "" && this.telephone != "" && this.adresse != "") {
                         console.log(data)
-                        
+                        this.$router.push('login')
                     }
                     else {
-                        this.messageError = "email ou mot de passe n'est pas valide"
+                        console.log("failed")
+                        this.messageError = "tous les champs ne sont pas correctement renseignés."
                     }
                 })
                 .catch(err => console.log(err))
@@ -96,6 +99,25 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+    .form__group label {
+        color: #414141;
+letter-spacing: .8px;
+font-weight: 700;
+font-size: 15px;
+line-height: 1.1;
+font-family: roboto condensed,sans-serif;
+text-transform: uppercase;
+width: 100%;
+outline: none !important;
+text-decoration: none !important;
+text-align: left;
+   }
+   .form__group input{
+       margin-top:10px;
+    border:#161616 1px solid;
+   }
+   .btn{
+       margin-top: 35px;
+   }
 </style>

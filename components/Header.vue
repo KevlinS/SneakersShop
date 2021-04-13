@@ -42,14 +42,24 @@
                         Se connecter
                     </NuxtLink>
                 </li>
+                <div>
+                  
+                </div>
+                 
             </ul>
-        </nav>    
+            
+        </nav>
+        
+    
     </header>
 </template>
 
 <script>
+
+ 
+
     export default {
-        
+       
     }
 </script>
 
