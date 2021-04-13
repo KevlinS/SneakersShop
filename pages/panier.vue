@@ -105,7 +105,7 @@
                     
                     if(data) {
                         console.log(data)
-                        
+                        this.$router.push('/account');
                     }
                     else {
                         console.log("failed")
