@@ -65,10 +65,11 @@
          data: function () {
         return {
             productArray: [],
-            product: {},
             total: 0,
             newTotal: 0,
-            isLogged: true
+            user: {},
+            products: [],
+            userOrder: ""
         };
     },
     methods: {
@@ -79,12 +80,43 @@
       paiement: function() {
            const token =  localStorage.getItem('token');
             if(token) {
-             
-              console.log("login")
-          }
-          else{
-              console.log("not login")
-          }
+                const jwtDecoded = this.$decodeJwt(token); 
+                console.log(jwtDecoded);
+                this.$getMe(jwtDecoded.id, token)
+                .then(data => {
+                    
+                    this.user = data;
+                   this.userOrder = this.user._id;
+                    
+                })
+                .catch(err=>console.log(err))
+               
+            }
+            if(this.user){
+                 const body = {
+                            amountTotal: this.newTotal,
+                            products: this.products,
+                            user: this.userOrder
+                        }
+                        console.log(body)
+                        
+                this.$createOrder(body)
+                 .then((data) => {
+                    
+                    if(data) {
+                        console.log(data)
+                        
+                    }
+                    else {
+                        console.log("failed")
+                    }
+                })
+                .catch(err => console.log(err))
+                console.log("login")
+            }
+            else{
+                console.log("not login")
+            }
           
       }
     },
@@ -96,7 +128,9 @@
             console.log(this.productArray[i].price)
             this.total += this.productArray[i].price;
             this.newTotal =  this.total.toFixed(2);
+            this.products.push(this.productArray[i].id)
         }
+        // console.log(this.products)
         
     },
    

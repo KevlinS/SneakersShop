@@ -28,6 +28,16 @@ export default ({app}, inject) => {
         })
         .then(res => res.json())
     }),
+    inject('createOrder', (body) => {
+        return fetch(`${process.env.API_URL}/orders`, {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/json",
+            },
+            body: JSON.stringify(body)
+        })
+        .then(res => res.json())
+    }),
     inject('getOrder', (id) => {
         return fetch(`${process.env.API_URL}/order/${id}`, {
             method: "GET"

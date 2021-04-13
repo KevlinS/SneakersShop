@@ -11,11 +11,14 @@
         <p>Téléphone: {{user.telephone}}</p>
         <p>Adresse: {{user.adresse}}</p>
         <div class="input__wrapper">
-            <button @click="logout">Se déconnecter</button>
+            <Button btnTitle="Se déconnecter" :btnFunction="logout"/>
         </div>
-
+        <div>
+            <h1>VOS COMMANDES</h1>
+        </div>
         </div>
         <div class="products grid grid-cols-3 gap-3">
+        
          <div class="product__grid flex justify-center" v-for="product in productList" :key="product.id">
             <div class="product__item grid justify-items-center">
                 <img :src=product.image>
@@ -30,11 +33,13 @@
 
 <script>
     import TitlePage from "../components/TitlePage";
+    import Button from "../components/Button";
     import VueJwtDecode from "vue-jwt-decode";
 
     export default {
         components: {
-            TitlePage
+            TitlePage,
+            Button
         },
         data: function() {
             return {
@@ -100,5 +105,9 @@
   align-items: center;
   text-align: center;
   margin-top: 35px;
+}
+.input__wrapper{
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
 </style>
