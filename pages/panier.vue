@@ -43,7 +43,7 @@
 
     export default {
         head: {
-            title: "Panier Vue JS",
+            title: "Panier",
             meta: [
                 {
                     hid: 'description',
