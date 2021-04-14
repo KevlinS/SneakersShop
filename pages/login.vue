@@ -50,14 +50,12 @@
                 this.$router.push('registration')
             },
             login: function() {
-                console.log(this.email, this.password);
                 const body = {
                     email: this.email,
                     password: this.password
                 }
                 this.$login(body)
                 .then((data) => {
-                    console.log(data)
                     if(data.auth) {
                         localStorage.setItem("token", data.token)
                         this.$store.commit('isAuth');

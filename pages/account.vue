@@ -82,10 +82,10 @@
             if(token) {
                 
                 const jwtDecoded = this.$decodeJwt(token); 
-                console.log(jwtDecoded);
+                // console.log(jwtDecoded);
                 this.$getMe(jwtDecoded.id, token)
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     this.isLogged = true;
                     this.user = data;
                     
@@ -103,9 +103,9 @@
                         for(var j=0; j<data[i].products.length; j++){
                             if(idUserInOrder == this.user._id){
                                 
-                                console.log(data[i]._id)
+                           
                                 this.commandeList.push(data[i]);
-                                console.log(i)
+                                
                                 this.commandeList.splice(i)
                                 // this.productList = data[i].products[j]
                                

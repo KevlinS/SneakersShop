@@ -81,7 +81,7 @@
            const token =  localStorage.getItem('token');
             if(token) {
                 const jwtDecoded = this.$decodeJwt(token); 
-                console.log(jwtDecoded);
+                
                 this.$getMe(jwtDecoded.id, token)
                 .then(data => {
                     
@@ -98,7 +98,7 @@
                             products: this.products,
                             user: this.userOrder
                         }
-                        console.log(body)
+                       
                         
                 this.$createOrder(body)
                  .then((data) => {
@@ -123,9 +123,9 @@
     mounted() {
         
         this.productArray = this.getProductPanier();
-        console.log(this.productArray)
+       
         for(var i=0; i<this.productArray.length; i++) {
-            console.log(this.productArray[i].price)
+            
             this.total += this.productArray[i].price;
             this.newTotal =  this.total.toFixed(2);
             this.products.push(this.productArray[i].id);

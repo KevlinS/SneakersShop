@@ -69,7 +69,7 @@
         },
         methods: {
             inscription: function() {
-                console.log(this.email, this.password, this.firstName, this.lastName, this.isAdmin, this.telephone, this.adresse);
+               
                 const body = {
                     firstName: this.firstName,
                     lastName: this.lastName,
@@ -85,7 +85,7 @@
                     
                     if(this.firstName != "" && this.lastName != "" && this.email != "" &&
                     this.password != "" && this.isAdmin != "" && this.telephone != "" && this.adresse != "") {
-                        console.log(data)
+                        // console.log(data)
                         this.$router.push('login')
                     }
                     else {
