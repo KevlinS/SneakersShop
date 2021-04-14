@@ -49,6 +49,16 @@ export default ({app}, inject) => {
             method: "GET"
         })
         .then(res => res.json())
+    }),
+    inject('updateUser', (id, body) => {
+        return fetch(`${process.env.API_URL}/user/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "Application/json",
+            },
+            body: JSON.stringify(body)
+        })
+        .then(res => res.json())
     })
 
 }

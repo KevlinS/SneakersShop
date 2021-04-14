@@ -11,6 +11,9 @@
         <p>Téléphone: +33{{user.telephone}}</p>
         <p>Adresse: {{user.adresse}}</p>
         <div class="input__wrapper">
+            <Button btnTitle="Modifier votre profil" :btnFunction="edit"/>
+        </div>
+        <div class="input__wrapper">
             <Button btnTitle="Se déconnecter" :btnFunction="logout"/>
         </div>
         <div >
@@ -69,6 +72,9 @@
                 this.$store.commit('loggedOut');
                 this.isLogged = false;
                 this.$router.push('/');
+            },
+            edit: function() {
+                this.$router.push('editprofile');
             }
         },
         fetch() {
